@@ -1,7 +1,7 @@
 - hosts: all
   become: yes
       
-- name: Download the nginx package but do not install it
+- name: Install Wget 
   yum:
     name:
       - wget
