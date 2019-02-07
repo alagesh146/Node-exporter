@@ -1,4 +1,8 @@
-- name: install the latest version of wget
-  yum:
-    name: wget
-    state: latest
+---
+- hosts: all
+  
+  tasks:
+  - name: install wget
+    yum:
+      name: wget
+      state: latest
