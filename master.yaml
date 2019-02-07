@@ -2,10 +2,8 @@
 - 
   become: true
   hosts: all
--
-  name: "Install Wget"
-  yum: 
-  name: 
-  - wget
-  state: present
-    
+  
+- name: install the latest version of wget
+  yum:
+    name: wget
+    state: latest
