@@ -1,8 +1,9 @@
 - hosts: all
   become: yes
-       
-- name: Install wget
-  yum:
+      
+tasks:
+ - name: Install wget
+   yum:
     name: wget
     state: present
       
