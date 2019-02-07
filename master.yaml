@@ -1,9 +1,9 @@
 - hosts: all
   become: yes
        
-  - name: Install wget
-     yum:
-       name: wget
-       state: present
+- name: Install wget
+  yum:
+    name: wget
+    state: present
       
 
