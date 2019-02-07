@@ -4,9 +4,9 @@
   hosts: all
 -
   name: "Install Wget"
-    yum: 
-    name: 
-      - wget
+  yum: 
+  name: 
+    - wget
     state: present
     
 - name: Install Zabbix Agent
