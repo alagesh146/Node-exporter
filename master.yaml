@@ -2,9 +2,13 @@
 - 
   become: true
   hosts: all
-- 
+-
   name: "Install Wget"
-  yum: 
+    yum: 
     name: 
       - wget
     state: present
+    
+- name: Install Zabbix Agent
+    yum: 
+    name: zabbix-agent
