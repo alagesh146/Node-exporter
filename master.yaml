@@ -1,11 +1,53 @@
 ---
 - hosts: all
   become: true
-  
+
   tasks:
+  - name: Add the user 'prometheus'
+    user:
+      name: prometheus
+      comment: Prometheus Agent
+      shell: /sbin/nologin
+
   - name: install wget
     yum:
       name: wget
       state: latest
   - name: download node exporter
     shell: cd /tmp/ && wget https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
+
+  - name: Extract tar.gz into /tmp/
+    unarchive:
+          src: '/tmp/{{item}}'
+          dest: /tmp/
+          remote_src: yes
+    with_items:
+          - node_exporter-0.17.0.linux-amd64.tar.gz
+
+
+  - name: download node exporter
+    shell: cp /tmp/node_exporter-0.17.0.linux-amd64/node_exporter /usr/local/sbin/
+  - name: remove tar files
+    shell: rm -f /tmp/node_exporter-0.17.0.linux-amd64.tar.gz*
+  - name: remove diectory
+    shell: rm -r /tmp/node_exporter-0.17.0.linux-amd64
+
+  - name: download systemd fil
+    shell: cd /tmp/ && wget https://raw.githubusercontent.com/alagesh146/Node-exporter/master/node-exporter.service
+  - name: move systemd startup file to systemd folder
+    shell: mv /tmp/node-exporter.service /etc/systemd/system/
+#  - name: remove temp files
+#    shell: rm -r /tmp/node-exporter.service*
+  - name: create environment file
+    shell: touch  /etc/sysconfig/node_exporter
+  - name: enable node-eporter service and ensure it is not masked
+    systemd:
+     name: node-exporter
+     enabled: yes
+     masked: no
+  - name: Make sure a service is running
+    systemd:
+     state: started
+     name: node-exporter
+  - name: Crete firewall rules
+    shell: firewall-cmd --add-port=9100/tcp && firewall-cmd --add-port=9100/tcp --permanent
