@@ -1,10 +1,8 @@
 - hosts: all
   become: yes
       
-tasks:
- - name: Install wget
-   yum:
-    name: wget
+- name: Download the nginx package but do not install it
+  yum:
+    name:
+      - wget
     state: present
-      
-
