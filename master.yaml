@@ -1,29 +1,8 @@
 - hosts: all
   become: yes
-  
-  tasks:
-  - name: Download masthead from BigFix Server
-    copy:
-       src: /bigfix/actionsite.afxm
-       dest: /etc/opt/BESClient/
-   
-  - name: Populate Besclient config file
-    copy:
-       src: /bigfix/besclient.config
-       dest: /var/opt/BESClient/
-     
-  - name: Copy Bigfix Client RPM
-    copy:
-       src: /bigfix/BESAgent-9.5.9.62-rhe6.x86_64.rpm
-       dest: /tmp/BESAgent-9.5.9.62-rhe6.x86_64.rpm
-     
-  - name: Install Bigfix Client
+       
+  - name: Install wget
     yum:
-      name: /tmp/BESAgent-9.5.9.62-rhe6.x86_64.rpm
+      name: wget
       state: present
-  
-  - name: Start the service
-    service:
-      name: besclient
-      state: restarted
-      enabled: yes
+
