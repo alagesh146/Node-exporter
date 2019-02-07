@@ -2,7 +2,8 @@
   become: yes
        
   - name: Install wget
-    yum:
-      name: wget
-      state: present
+     yum:
+       name: wget
+       state: present
+      
 
