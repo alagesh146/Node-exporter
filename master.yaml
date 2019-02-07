@@ -1,8 +1,10 @@
-- hosts: all
-  become: yes
-      
-- name: Install Wget 
-  yum:
-    name:
+--- 
+- 
+  become: true
+  hosts: all
+- 
+  name: "Install Wget"
+  yum: 
+    name: 
       - wget
     state: present
