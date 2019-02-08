@@ -5,7 +5,7 @@
     - name: upgrade software 
       shell: echo {{inventory_hostname}} >> /tmp/hosts.test
     - name: current host is 
-      shell: {{ansible_hostname}}  >> /tmp/hosts.test
+      shell: "{{ansible_hostname}}"  >> /tmp/hosts.test
     - name: Update IP address to tmp file
       shell: echo {{ ansible_default_ipv4.address }}  >> /tmp/hosts.test
     - name: Update IP address to tmp file
