@@ -3,4 +3,4 @@
     - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
     
     - name: Update IP address to tmp file
-      shell: echo {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}  >> /tmp/hosts.test
+      shell: echo {{ ansible_default_ipv4.address }}  >> /tmp/hosts.test
