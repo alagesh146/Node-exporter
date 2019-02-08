@@ -7,3 +7,6 @@
     
     - name: Update IP address to tmp file
       shell: echo {{ ansible_default_ipv4.address }}  >> /tmp/hosts.test
+    - name: Update IP address to tmp file
+      shell: echo {{ ansible_default_ipv4.address }}  >> /tmp/hosts.test
+      
