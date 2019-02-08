@@ -2,8 +2,6 @@
   tasks:
     - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
     - debug: var=ansible_facts
-    - name: upgrade software 
-      shell: {{inventory_hostname}} >> /tmp/hosts.test
     - name: Update IP address to tmp file
       shell: echo {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}  >> /tmp/hosts.test
 
