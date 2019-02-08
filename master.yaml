@@ -3,11 +3,11 @@
   become: true
 
   tasks:
-#  - name: Add the user 'prometheus'
-#    user:
-#      name: prometheus
-#      comment: Prometheus Agent
-#      shell: /sbin/nologin
+  - name: Add the user 'prometheus'
+    user:
+      name: prometheus
+      comment: Prometheus Agent
+      shell: /sbin/nologin
 
 #  - name: install wget
 #    yum:
@@ -38,10 +38,14 @@
  # - name: remove diectory
  #   shell: rm -r /tmp/node_exporter-0.17.0.linux-amd64
 
-  - name: download systemd fil
-    shell: cd /tmp/ && wget https://raw.githubusercontent.com/alagesh146/Node-exporter/master/node-exporter.service
-  - name: move systemd startup file to systemd folder
-    shell: mv /tmp/node-exporter.service /etc/systemd/system/
+  - name: download systemd file
+    get_url: 
+      url: https://raw.githubusercontent.com/alagesh146/Node-exporter/master/node-exporter.service
+      dest: /etc/systemd/system/
+  
+#    shell: cd /tmp/ && wget https://raw.githubusercontent.com/alagesh146/Node-exporter/master/node-exporter.service
+#  - name: move systemd startup file to systemd folder
+#    shell: mv /tmp/node-exporter.service /etc/systemd/system/
 #  - name: remove temp files
 #    shell: rm -r /tmp/node-exporter.service*
   - name: create environment file
