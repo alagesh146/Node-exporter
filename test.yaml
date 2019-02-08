@@ -1,4 +1,6 @@
 - hosts: localhost
   tasks:
     - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
-    - debug: var=hostvars[inventory_hostname]['ansible_default_ipv6']['address']
+    
+    - name: Update IP address to tmp file
+      shell: echo {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}  >> /tmp/hosts.test
