@@ -3,11 +3,7 @@
     - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
     - debug: var=ansible_facts
     - name: upgrade software 
-      shell: echo {{inventory_hostname}} >> /tmp/hosts.test
- #   - name: current host is
- #     shell: "{{ansible_hostname}}"  >> /tmp/hosts.test
+      shell: echo Inv_Hostname : {{inventory_hostname}} >> /tmp/hosts.test
     - name: Update IP address to tmp file
-      shell: echo {{ ansible_default_ipv4.address }}  >> /tmp/hosts.test
-    - name: Update IP address to tmp file
-      shell: echo {{ ansible_default_ipv4.address }}  >> /tmp/hosts.test
-      
+      shell: echo {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}  >> /tmp/hosts.test
+
