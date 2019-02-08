@@ -44,13 +44,24 @@
       url: https://raw.githubusercontent.com/alagesh146/Node-exporter/master/node-exporter.service
       dest: /etc/systemd/system/
   
+  - name: systemctl reload 
+    shell: systemctl daemon-reload
+  
+  
+  
+  
 #    shell: cd /tmp/ && wget https://raw.githubusercontent.com/alagesh146/Node-exporter/master/node-exporter.service
 #  - name: move systemd startup file to systemd folder
 #    shell: mv /tmp/node-exporter.service /etc/systemd/system/
 #  - name: remove temp files
 #    shell: rm -r /tmp/node-exporter.service*
   - name: create environment file
-    shell: touch  /etc/sysconfig/node_exporter
+    get_url:
+      url : https://raw.githubusercontent.com/alagesh146/Node-exporter/master/node_exporter_config
+      dest: /etc/sysconfig/node_exporter_config
+      
+    
+    
   - name: enable node-eporter service and ensure it is not masked
     systemd:
      name: node-exporter
