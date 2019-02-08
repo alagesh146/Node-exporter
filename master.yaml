@@ -29,6 +29,7 @@
     get_url: 
       url: https://github.com/alagesh146/Node-exporter/raw/master/node_exporter
       dest: /usr/local/sbin/node_exporter
+      mode: 0755
     
    
   
