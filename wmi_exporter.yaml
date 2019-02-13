@@ -1,3 +1,4 @@
+- hosts: all
 
 - name: install an WMI_Exporter 
   win_msi:
