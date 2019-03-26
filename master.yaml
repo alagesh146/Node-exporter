@@ -9,6 +9,8 @@
       comment: Prometheus Agent
       shell: /sbin/nologin
 
+  - name: cleanup old node-exporter from AMI
+    shell: systemctl disable prometheus-node-exporter.service;systemctl stop prometheus-node-exporter.service; rm /etc/systemd/system/prometheus-node-exporter.service;rm -rf /opt/prometheus
 
   - name: download node exporter
     get_url: 
