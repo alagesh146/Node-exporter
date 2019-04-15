@@ -44,5 +44,11 @@
     systemd:
      state: started
      name: node-exporter
-  - name: Crete firewall rules
-    shell: firewall-cmd --add-port=9100/tcp && firewall-cmd --add-port=9100/tcp --permanent
+#- name: Crete firewall rules
+#  shell: firewall-cmd --add-port=9100/tcp && firewall-cmd --add-port=9100/tcp --permanent
+    
+  - name: Enable node-exporter port in firewall
+    firewalld:
+     port: 9100/tcp
+     permanent: yes
+     state: disabled
