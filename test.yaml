@@ -4,7 +4,5 @@
   
   tasks:
   - name: Update IP address to tmp file
-    shell: export IDMPASS="BzedSCmzNXU}:s[@jM'p"
-  - name: IDM install
-    shell: /sbin/ipa-client-install -p hostadmin --enable-dns-updates --mkhomedir -w ${IDMPASS} -U --force-join
+    shell: export IDMPASS="BzedSCmzNXU}:s[@jM'p";/sbin/ipa-client-install -p hostadmin --enable-dns-updates --mkhomedir -w ${IDMPASS} -U --force-join
 
