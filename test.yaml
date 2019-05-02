@@ -1,4 +1,7 @@
+---
 - hosts: all
+  become: true
+  
   tasks:
   - name: Update IP address to tmp file
     shell: export IDMPASS="BzedSCmzNXU}:s[@jM'p"
