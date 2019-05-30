@@ -1,9 +1,9 @@
 ---
-hosts: all
-tasks:
+- hosts: all
+  tasks:
  
   - name: download msi file
-    win_get_url:: 
+    win_get_url: 
       url: https://github.com/martinlindhe/wmi_exporter/releases/download/v0.5.0/wmi_exporter-0.5.0-amd64.msi
       dest: c:\temp\
       
