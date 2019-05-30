@@ -1,14 +1,14 @@
 ---
-- hosts: all
-  tasks:
-  
-    - name: download msi file
-      win_get_url:: 
-       url: https://github.com/martinlindhe/wmi_exporter/releases/download/v0.5.0/wmi_exporter-0.5.0-amd64.msi
-       dest: c:\temp\
+hosts: all
+tasks:
+ 
+  - name: download msi file
+    win_get_url:: 
+      url: https://github.com/martinlindhe/wmi_exporter/releases/download/v0.5.0/wmi_exporter-0.5.0-amd64.msi
+      dest: c:\temp\
       
-    - name: Install  WMI_Exporter to send OS level Metric to Prometheus 
-      win_msi:
-       path: c:\temp\wmi_exporter-0.5.0-amd64.msi
-       state: present
-       extra_args: ENABLED_COLLECTORS=os,service LISTEN_PORT=9182
+  - name: Install  WMI_Exporter to send OS level Metric to Prometheus 
+    win_msi:
+      path: c:\temp\wmi_exporter-0.5.0-amd64.msi
+      state: present
+      extra_args: ENABLED_COLLECTORS=os,service LISTEN_PORT=9182
