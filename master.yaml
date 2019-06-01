@@ -51,4 +51,4 @@
     firewalld:
      port: 9100/tcp
      permanent: yes
-     state: disabled
+     state: enabled
