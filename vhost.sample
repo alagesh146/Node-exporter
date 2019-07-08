@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+    ServerAdmin naga@kmine.com
+    ServerName kmine.com
+    ServerAlias www.kmine.com
+    <IfModule mod_setenvif.c>
+      SetEnvIf X-Amzn-Trace-Id "^(.*)$" HTTPS
+    </IfModule>
+    DocumentRoot /var/www/html/
+</VirtualHost>
