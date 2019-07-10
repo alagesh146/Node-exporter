@@ -5,3 +5,8 @@ curl -XPUT http://<url>:<port>/_cluster/settings -H 'Content-type: application/j
 Check cluster health check:
 
 curl -X GET "localhost:9200/_cluster/health"
+
+Check cluster stats
+
+curl -X GET "localhost:9200/_cluster/stats?human&pretty"
+
