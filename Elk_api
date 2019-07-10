@@ -1,0 +1,2 @@
+Increase Max open shards in Elastic Search Cluster
+curl -XPUT http://<url>:<port>/_cluster/settings -H 'Content-type: application/json' --data-binary $'{"transient":{"cluster.max_shards_per_node":3000}}'
