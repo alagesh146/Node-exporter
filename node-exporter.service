@@ -6,7 +6,6 @@ After=network.target
 Type=simple
 User=prometheus
 Group=prometheus
-EnvironmentFile=/etc/sysconfig/node_exporter_config
 ExecStart=/usr/local/sbin/node_exporter --collector.systemd
 
 SyslogIdentifier=prometheus_node_exporter
