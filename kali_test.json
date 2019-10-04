@@ -1,0 +1,120 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+
+    "Description": "KG DevOps interview CF stack",
+
+    "Resources": {
+	       "WebSG": {
+		         "Type": "AWS::EC2::SecurityGroup",
+		         "Properties": {
+			       "GroupDescription": "Web SG",
+			       "VpcId": "vpc-42c15b2b",
+			       "SecurityGroupIngress": [
+				       {
+					   "IpProtocol": "tcp",
+					   "FromPort": "22",
+					   "ToPort": "22",
+					   "CidrIp": "172.0.0.0/8"
+				       }
+			                             ]
+		                      }
+              },
+         "ElbSG": {
+		         "Type": "AWS::EC2::SecurityGroup",
+		         "Properties": {
+			       "GroupDescription": "ELB SG",
+			       "VpcId":  "vpc-42c15b2b",
+			       "SecurityGroupIngress": [
+				           {
+					          "IpProtocol": "tcp",
+					          "FromPort": "443",
+					          "ToPort": "443",
+					          "CidrIp": "0.0.0.0/0"
+			            	}
+			                              ]
+		                      }
+	              },
+        "InterviewEC2Instance": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "InstanceType": "t2.nano",
+                "ImageId": "ami-0cb892447fb9d327e",
+                "KeyName" : "kalitest",
+                "SourceDestCheck" : "false",
+                "Tags" : [{"Key" : "Name", "Value" : "Kalimuthu Sowndappan"}],
+                "UserData": {
+                "Fn::Base64": {
+                    "Fn::Join": [
+                        "",
+                                ["#!/bin/bash\n",
+                            "yum install -y nginx\n",
+                            "systemctl start nginx"]
+                    ]
+            }
+        }
+
+    }
+  },
+
+  "TGTest": {
+		"Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+		"Properties": {
+			"HealthCheckIntervalSeconds": 15,
+			"HealthCheckPath": "/",
+			"HealthCheckProtocol": "HTTP",
+			"HealthCheckTimeoutSeconds": 10,
+			"HealthyThresholdCount": 2,
+			"UnhealthyThresholdCount": 2,
+			"Matcher": {
+				"HttpCode": "200-299"
+			},
+			"Port": 80,
+			"Protocol": "HTTP",
+      "VpcId": "vpc-42c15b2b",
+      "Targets" :   [ 
+      {
+        "Id" : { "Ref": "InterviewEC2Instance" },
+        "Port" : 80
+      }
+    ],
+      "TargetType": "instance"
+      
+		}
+	},
+      "ElasticLoadBalancer": {
+        "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+        "DependsOn": [
+          "TGTest"
+  ],
+      "Properties": {
+        "Name": "elb01",
+        "SecurityGroups": [
+      {
+        "Ref": "ElbSG"
+      }
+    ],
+    "Subnets": ["subnet-76c2a71f","subnet-1577ae58","subnet-7b041b03"],
+    "Scheme": "internal",
+    "Type" : "application"
+  }
+},
+"ALBListener": {
+  "Type": "AWS::ElasticLoadBalancingV2::Listener",
+  "DependsOn": [
+    "ElasticLoadBalancer"
+  ],
+  "Properties": {
+    "DefaultActions": [
+      {
+             
+        "Type": "forward",
+        "TargetGroupArn": { "Ref": "TGTest" }
+      }
+    ],
+    "LoadBalancerArn": {"Ref": "ElasticLoadBalancer"},
+    "Port": 80,
+    "Protocol": "HTTP"
+  }
+}
+}
+}
