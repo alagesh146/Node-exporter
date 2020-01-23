@@ -1,0 +1,1 @@
+for i in `cat plugins-raw`; do echo $i; java -jar jenkins-cli.jar -s http://localhost:8080/ -auth admin:P@nd0ra2020 install-plugin $i; done
