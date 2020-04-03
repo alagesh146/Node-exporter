@@ -1,3 +1,38 @@
 https://vpc-elastic-kcjq5yivyfzmzvg2gnqtgrpdty.eu-west-1.es.amazonaws.com/_plugin/kibana/app/kibana
 
 https://vpc-elastic-kcjq5yivyfzmzvg2gnqtgrpdty.eu-west-1.es.amazonaws.com/_plugin/kibana/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-4h,mode:quick,to:now))&_a=(columns:!(_source),index:%2710b63a50-310b-11e9-92ef-7129976c4f07%27,interval:auto,query:(language:lucene,query:%27%27),sort:!(%27@timestamp%27,desc))
+
+error.message:
+    Error decoding JSON: invalid character '-' after array element
+@timestamp:
+    April 3rd 2020, 15:54:29.991
+kubernetes.node.name:
+    ip-10-217-9-227.eu-west-1.compute.internal
+kubernetes.container.name:
+    client-db-manager
+kubernetes.namespace:
+    default
+kubernetes.replicaset.name:
+    cp-db-manager-deployment-b55dd4947
+kubernetes.labels.pod-template-hash:
+    b55dd4947
+kubernetes.labels.business_unit:
+    Product_Group
+kubernetes.labels.infra_type:
+    core
+kubernetes.labels.compliance:
+    gdpr
+kubernetes.labels.costCenter:
+    tbd
+kubernetes.labels.date:
+    1551951226
+kubernetes.labels.technical_owner:
+    Product_Group
+kubernetes.labels.environment:
+    prod
+kubernetes.pod.name:
+    cp-db-manager-deployment-b55dd4947-7j96k
+source:
+    /var/lib/docker/containers/15e155a883753d68e151470d09c1c52ceefb49f8e5be095cc1ddde801b90c650/15e155a883753d68e151470d09c1c52ceefb49f8e5be095cc1ddde801b90c650-json.log
+input.type:
+    docker
