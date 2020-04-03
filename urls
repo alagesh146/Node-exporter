@@ -36,3 +36,46 @@ source:
     /var/lib/docker/containers/15e155a883753d68e151470d09c1c52ceefb49f8e5be095cc1ddde801b90c650/15e155a883753d68e151470d09c1c52ceefb49f8e5be095cc1ddde801b90c650-json.log
 input.type:
     docker
+
+
+
+############################################
+kubernetes.pod.name:
+    microgateway-5ffdfc6694-lz2tr
+@timestamp:
+    April 3rd 2020, 15:58:01.296
+error.message:
+    Error decoding JSON: json: cannot unmarshal number into Go value of type map[string]interface {}
+error.type:
+    json
+prospector.type:
+    docker
+beat.version:
+    6.4.2
+beat.name:
+    filebeat-282cn
+beat.hostname:
+    filebeat-282cn
+meta.cloud.instance_id:
+    i-064f6592ba8fa5913
+meta.cloud.machine_type:
+    t2.xlarge
+meta.cloud.region:
+    eu-west-1
+meta.cloud.availability_zone:
+    eu-west-1c
+meta.cloud.provider:
+    ec2
+host.name:
+    filebeat-282cn
+message:
+    1585925881296 info sourceResponse s=200, d=94, i=83657520-75bb-11ea-ab1e-552d1f58fd3e
+source:
+    /var/lib/docker/containers/2464381dc7ae1d76315f04b815d87237b3a4b86ad960dd4433afac9e78ae210c/2464381dc7ae1d76315f04b815d87237b3a4b86ad960dd4433afac9e78ae210c-json.log
+offset:
+    10,121,089,956
+stream:
+    stdout
+input.type:
+    docker
+kuberne
