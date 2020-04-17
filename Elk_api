@@ -5,6 +5,18 @@ curl -XPUT http://<url>:<port>/_cluster/settings -H 'Content-type: application/j
 Check cluster health check:
 
 curl -X GET "localhost:9200/_cluster/health"
+_search
+{
+"filter" :{
+"query": {
+"range": {
+"timestamp": {
+"gte" : "now-1h"
+}
+}
+}
+}
+}
 
 Check cluster stats
 
